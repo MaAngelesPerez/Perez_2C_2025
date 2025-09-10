@@ -1,0 +1,108 @@
+\doxysection{main/guia1\+\_\+ej4.c File Reference}
+\hypertarget{guia1__ej4_8c}{}\label{guia1__ej4_8c}\index{main/guia1\_ej4.c@{main/guia1\_ej4.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}led.\+h"{}}\newline
+{\ttfamily \#include "{}switch.\+h"{}}\newline
+{\ttfamily \#include "{}math.\+h"{}}\newline
+{\ttfamily \#include "{}gpio\+\_\+mcu.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura para configuración de pines GPIO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{guia1__ej4_8c_a52ee2e8838ceab35f8bdc0f4e58a0dac}{convert\+To\+Bcd\+Array}} (uint32\+\_\+t data, uint8\+\_\+t digits, uint8\+\_\+t \texorpdfstring{$\ast$}{*}bcd\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Convierte un número decimal a un arreglo BCD (Binary Coded Decimal) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{guia1__ej4_8c_a9522901776efaabe4a16bd6f2e7f05f6}{mapearbits}} (\mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}arreglo, uint8\+\_\+t digits)
+\begin{DoxyCompactList}\small\item\em Mapea los bits de un dígito BCD a los pines GPIO correspondientes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{guia1__ej4_8c_a475dde1168128f3e6bc868ec3ddafd8b}{multipelxor}} (uint32\+\_\+t numero, uint8\+\_\+t digito, \mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}arreglo, \mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}mult)
+\begin{DoxyCompactList}\small\item\em Controla un display multiplexado de 3 dígitos usando BCD y decodificador 7447. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{guia1__ej4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Función principal del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{guia1__ej4_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{guia1__ej4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{guia1\_ej4.c@{guia1\_ej4.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!guia1\_ej4.c@{guia1\_ej4.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{guia1__ej4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal del programa. 
+
+Configura los pines GPIO y demuestra el funcionamiento del sistema de display BCD multiplexado mostrando el número 138. \Hypertarget{guia1__ej4_8c_a52ee2e8838ceab35f8bdc0f4e58a0dac}\index{guia1\_ej4.c@{guia1\_ej4.c}!convertToBcdArray@{convertToBcdArray}}
+\index{convertToBcdArray@{convertToBcdArray}!guia1\_ej4.c@{guia1\_ej4.c}}
+\doxysubsubsection{\texorpdfstring{convertToBcdArray()}{convertToBcdArray()}}
+{\footnotesize\ttfamily \label{guia1__ej4_8c_a52ee2e8838ceab35f8bdc0f4e58a0dac} 
+int8\+\_\+t convert\+To\+Bcd\+Array (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{data}{, }\item[{uint8\+\_\+t}]{digits}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bcd\+\_\+number}{}\end{DoxyParamCaption})}
+
+
+
+Convierte un número decimal a un arreglo BCD (Binary Coded Decimal) 
+
+Esta función toma un número decimal y lo convierte dígito por dígito, almacenando cada dígito en formato BCD en un arreglo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Número decimal a convertir (32 bits) \\
+\hline
+{\em digits} & Cantidad de dígitos a extraer \\
+\hline
+{\em bcd\+\_\+number} & Puntero al arreglo donde se almacenarán los dígitos BCD \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Código de retorno (0 = éxito) 
+\end{DoxyReturn}
+\Hypertarget{guia1__ej4_8c_a9522901776efaabe4a16bd6f2e7f05f6}\index{guia1\_ej4.c@{guia1\_ej4.c}!mapearbits@{mapearbits}}
+\index{mapearbits@{mapearbits}!guia1\_ej4.c@{guia1\_ej4.c}}
+\doxysubsubsection{\texorpdfstring{mapearbits()}{mapearbits()}}
+{\footnotesize\ttfamily \label{guia1__ej4_8c_a9522901776efaabe4a16bd6f2e7f05f6} 
+void mapearbits (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{arreglo}{, }\item[{uint8\+\_\+t}]{digits}{}\end{DoxyParamCaption})}
+
+
+
+Mapea los bits de un dígito BCD a los pines GPIO correspondientes. 
+
+Esta función toma un dígito BCD (4 bits) y activa/desactiva los pines GPIO según el valor de cada bit para controlar un display de 7 segmentos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Puntero al arreglo de configuración de pines GPIO \\
+\hline
+{\em digits} & Dígito BCD a mapear (4 bits menos significativos) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{guia1__ej4_8c_a475dde1168128f3e6bc868ec3ddafd8b}\index{guia1\_ej4.c@{guia1\_ej4.c}!multipelxor@{multipelxor}}
+\index{multipelxor@{multipelxor}!guia1\_ej4.c@{guia1\_ej4.c}}
+\doxysubsubsection{\texorpdfstring{multipelxor()}{multipelxor()}}
+{\footnotesize\ttfamily \label{guia1__ej4_8c_a475dde1168128f3e6bc868ec3ddafd8b} 
+void multipelxor (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{numero}{, }\item[{uint8\+\_\+t}]{digito}{, }\item[{\mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{arreglo}{, }\item[{\mbox{\hyperlink{structgpio_conf__t}{gpio\+Conf\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{mult}{}\end{DoxyParamCaption})}
+
+
+
+Controla un display multiplexado de 3 dígitos usando BCD y decodificador 7447. 
+
+Esta función toma un número de 3 dígitos, lo convierte a BCD y lo muestra en un display de 7 segmentos multiplexado. Cada dígito se muestra secuencialmente activando el pin correspondiente del multiplexor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em numero} & Número a mostrar (máximo 3 dígitos) \\
+\hline
+{\em digito} & Cantidad de dígitos del número \\
+\hline
+{\em arreglo} & Puntero al arreglo de pines para las líneas BCD (A,B,C,D) \\
+\hline
+{\em mult} & Puntero al arreglo de pines para control del multiplexor \\
+\hline
+\end{DoxyParams}
